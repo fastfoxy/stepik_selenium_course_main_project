@@ -14,6 +14,12 @@ class BasePage():
         link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
         link.click()
 
+    # вероятно стоит перенести этот метод в промежуточный по наследованию класс,
+    # т.к. кнопка перехода в корзину есть не на всех страницах сайта, например, её нет на странице самой корзины
+    def go_to_basket_page(self):
+        link = self.browser.find_element(*BasePageLocators.VIEW_BASKET_BUTTON)
+        link.click()
+
     def is_element_present(self, how, what):
         try:
             self.browser.find_element(how, what)
