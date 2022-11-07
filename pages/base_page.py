@@ -14,7 +14,7 @@ class BasePage():
         link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
         link.click()
 
-    # вероятно стоит перенести этот метод в промежуточный по наследованию класс,
+    # вероятно в будущем стоит перенести этот метод в промежуточный по наследованию класс,
     # т.к. кнопка перехода в корзину есть не на всех страницах сайта, например, её нет на странице самой корзины
     def go_to_basket_page(self):
         link = self.browser.find_element(*BasePageLocators.VIEW_BASKET_BUTTON)
@@ -46,6 +46,10 @@ class BasePage():
 
     def open(self):
         self.browser.get(self.url)
+
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
+                                                                 " probably unauthorised user"
 
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
